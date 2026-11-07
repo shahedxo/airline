@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Details | NUVORA AIRLINES</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">✈️ NUVORA <span>AIRLINES</span></a>
+      <button class="mobile-menu-btn" id="mobilemenutoggle" aria-label="toggle navigation">☰</button>
+      <ul class="nav-menu" id="navmenu">
+        <li><a href="index.html">explore trips</a></li>
+        <li><a href="fav.html">favourites <span class="fav-counter-badge">0</span></a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div id="notfoundbox" class="empty-box" style="display: none;">
+      <h2>trip not found</h2>
+      <p>we couldn't locate the package you requested.</p>
+      <a href="index.html" class="btn">return to all trips</a>
+    </div>
+
+    <div id="detailcontent">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+        <div>
+          <span class="category-badge" id="tripcategory">adventure</span>
+          <h1 id="tripname" style="font-size: 2.2rem; margin-top: 8px;">loading package...</h1>
+          <p id="tripdestination" style="font-size: 1.1rem; color: var(--text-muted);"></p>
+        </div>
+        <button id="detailfavbtn" class="btn btn-secondary" type="button">🤍 add to favourites</button>
+      </div>
+
+      <div class="trip-detail-wrap">
+        <div>
+          <section class="gallery-container">
+            <div class="slider-viewport">
+              <img id="sliderimg" src="" alt="trip gallery image">
+              <div class="slider-nav">
+                <button class="slider-btn" id="prevslide" type="button" aria-label="previous slide">‹</button>
+                <button class="slider-btn" id="nextslide" type="button" aria-label="next slide">›</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="detail-section">
+            <h2>overview</h2>
+            <p id="triplongdesc" style="line-height: 1.6; font-size: 1.05rem;"></p>
+          </section>
+
+          <section class="detail-section">
+            <h2>day by day itinerary</h2>
+            <ul class="itinerary-list" id="itinerarylist"></ul>
+          </section>
+
+          <section class="detail-section">
+            <h2>package inclusions & exclusions</h2>
+            <div class="inc-exc-grid">
+              <div class="inc-card">
+                <h3 style="color: var(--success); margin-bottom: 8px;">what is included</h3>
+                <ul id="includeslist"></ul>
+              </div>
+              <div class="exc-card">
+                <h3 style="color: var(--danger); margin-bottom: 8px;">what is not included</h3>
+                <ul id="excludeslist"></ul>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <aside>
+          <div class="booking-calc-box">
+            <h3>calculate & book</h3>
+            <div class="calc-price-lead" id="calcbaseprice">0 JD <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-muted);">per adult</span></div>
+
+            <div class="form-group">
+              <label for="departuredate">departure date</label>
+              <input type="date" id="departuredate">
+            </div>
+
+            <div class="form-group">
+              <label for="adultcount">adults (age 12+)</label>
+              <input type="number" id="adultcount" value="1" min="1">
+            </div>
+
+            <div class="form-group">
+              <label for="childcount">children (50% discount)</label>
+              <input type="number" id="childcount" value="0" min="0">
+            </div>
+
+            <div class="calc-breakdown">
+              <div class="calc-row">
+                <span>adults subtotal:</span>
+                <span id="adultsubtotal">0.00 JD</span>
+              </div>
+              <div class="calc-row">
+                <span>children subtotal:</span>
+                <span id="childsubtotal">0.00 JD</span>
+              </div>
+              <div class="calc-row calc-total-row">
+                <span>estimated total:</span>
+                <span id="calctotal">0.00 JD</span>
+              </div>
+            </div>
+
+            <button class="btn" id="booknowbtn" type="button" style="width: 100%;">book now</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 nuvora airlines. all rights reserved.</p>
+  </footer>
+
+  <script src="js/fav.js"></script>
+  <script src="js/trip.js"></script>
+</body>
+</html>
