@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>explore trips | nuvora airlines</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">✈️ nuvora <span>airlines</span></a>
+      <button class="mobile-menu-btn" id="mobilemenutoggle" aria-label="toggle navigation">☰</button>
+      <ul class="nav-menu" id="navmenu">
+        <li><a href="index.html">explore trips</a></li>
+        <li><a href="fav.html">favorites <span class="fav-counter-badge">0</span></a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero-tagline">your journey, elevated</p>
+      <h1>discover ur next adventure</h1>
+      <p>hand-picked trips for every type of traveler</p>
+    </section>
+
+    <section class="flight-search-bar">
+      <div class="search-primary">
+        <span>🔍</span>
+        <input type="text" id="searchinput" placeholder="search trips or destinations...">
+      </div>
+
+      <div class="search-grid">
+        <div class="field-cell">
+          <label for="categoryfilter">category</label>
+          <select id="categoryfilter">
+            <option value="all">all categories</option>
+            <option value="adventure">adventure</option>
+            <option value="cultural">cultural</option>
+            <option value="family">family</option>
+            <option value="honeymoon">honeymoon</option>
+          </select>
+        </div>
+
+        <div class="field-cell">
+          <label for="durationfilter">duration</label>
+          <select id="durationfilter">
+            <option value="all">all durations</option>
+            <option value="short">up to 3 days</option>
+            <option value="medium">up to 10 days</option>
+            <option value="long">more than 10 days</option>
+          </select>
+        </div>
+
+        <div class="field-cell">
+          <label for="minprice">min price (jd)</label>
+          <input type="number" id="minprice" placeholder="0" min="0">
+        </div>
+
+        <div class="field-cell">
+          <label for="maxprice">max price (jd)</label>
+          <input type="number" id="maxprice" placeholder="3000" min="0">
+        </div>
+
+        <div class="field-cell">
+          <label for="sortselect">sort by</label>
+          <select id="sortselect">
+            <option value="default">default</option>
+            <option value="price-asc">lowest price</option>
+            <option value="price-desc">highest price</option>
+            <option value="rating-desc">highest rating</option>
+          </select>
+        </div>
+
+        <button class="btn btn-secondary" id="resetbtn" type="button">reset</button>
+      </div>
+    </section>
+
+    <div class="status-row">
+      <p id="tripscounter">loading trips...</p>
+    </div>
+
+    <div id="noresults" class="empty-box" style="display: none;">
+      <h2>no trips match your search</h2>
+      <p>try adjusting your search keywords, clearing your filters, or broadening your budget.</p>
+      <button class="btn" id="emptyresetbtn">reset all filters</button>
+    </div>
+
+    <section class="trips-grid" id="tripsgrid"></section>
+  </main>
+
+  <footer>
+    <p>© 2026 nuvora airlines. all rights reserved.</p>
+  </footer>
+
+  <script src="js/fav.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
