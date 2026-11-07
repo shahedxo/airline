@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>complete reservation | nuvora</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">✈️ nuvora <span>airlines</span></a>
+      <button class="mobile-menu-btn" id="mobilemenutoggle" aria-label="toggle navigation">☰</button>
+      <ul class="nav-menu" id="navmenu">
+        <li><a href="index.html">explore trips</a></li>
+        <li><a href="fav.html">favourites <span class="fav-counter-badge">0</span></a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div id="bookingsummarycard" class="form-card" style="margin-bottom: 24px; display: none;">
+      <h2 style="margin-bottom: 12px;">package reservation summary</h2>
+      <p id="summarytriptitle" style="font-size: 1.25rem; font-weight: 800; color: var(--accent-sky);"></p>
+      <p id="summarytripdetails" style="color: var(--text-muted); margin: 8px 0 14px;"></p>
+      <p style="font-size: 1.4rem; font-weight: 900;" id="summarytotal"></p>
+    </div>
+
+    <div class="form-card" id="formwrapper">
+      <h2 style="margin-bottom: 20px;">passenger & contact details</h2>
+      <form id="bookingform" novalidate>
+        <div class="form-group">
+          <label for="fullname">full name</label>
+          <input type="text" id="fullname" placeholder="jane doe">
+          <div class="field-error-msg" id="nameerror">please enter your full name (at least 3 characters).</div>
+        </div>
+
+        <div class="form-group">
+          <label for="emailaddress">email address</label>
+          <input type="email" id="emailaddress" placeholder="jane@example.com">
+          <div class="field-error-msg" id="emailerror">please enter a valid email address.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="phonenumber">phone number</label>
+          <input type="tel" id="phonenumber" placeholder="e.g. 0791234567">
+          <div class="field-error-msg" id="phoneerror">please enter a valid phone number (digits only, 7 to 15 digits).</div>
+        </div>
+
+        <div class="form-group">
+          <label for="nationality">nationality</label>
+          <input type="text" id="nationality" placeholder="e.g. jordanian">
+        </div>
+
+        <div class="form-group">
+          <label for="bookingnotes">special requests / seat notes (optional)</label>
+          <textarea id="bookingnotes" rows="3" placeholder="dietary requirements, aisle seat preferences, etc."></textarea>
+        </div>
+
+        <button type="submit" class="btn" style="width: 100%;">confirm & complete reservation</button>
+      </form>
+    </div>
+
+    <div id="confirmationcard" class="empty-box" style="display: none;">
+      <h2 style="color: var(--success); margin-bottom: 12px;">🎉 reservation confirmed!</h2>
+      <p>your journey with nuvora airlines is secured.</p>
+      
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-glass); border-radius: 8px; padding: 20px; margin: 24px 0; text-align: left; line-height: 1.8;">
+        <div><strong>booking reference:</strong> <span id="confref" style="font-family: monospace; font-size: 1.15rem; font-weight: bold; color: var(--accent-sky);"></span></div>
+        <div><strong>lead passenger:</strong> <span id="confname"></span></div>
+        <div><strong>package:</strong> <span id="conftrip"></span></div>
+        <div><strong>departure:</strong> <span id="confdate"></span></div>
+        <div><strong>travellers:</strong> <span id="conftravellers"></span></div>
+        <div><strong>total paid:</strong> <span id="conftotal" style="font-weight: 800; color: var(--text-primary);"></span></div>
+      </div>
+
+      <a href="index.html" class="btn">return to explore</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 nuvora airlines. all rights reserved.</p>
+  </footer>
+
+  <script src="js/fav.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>
