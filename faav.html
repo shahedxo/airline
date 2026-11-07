@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>your saved trips | Nuvora</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">✈️ nuvora <span>airlines</span></a>
+      <button class="mobile-menu-btn" id="mobilemenutoggle" aria-label="toggle navigation">☰</button>
+      <ul class="nav-menu" id="navmenu">
+        <li><a href="index.html">explore trips</a></li>
+        <li><a href="fav.html">favourites <span class="fav-counter-badge">0</span></a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div style="margin: 20px 0 30px;">
+      <h1 style="font-size: 2.3rem; margin-bottom: 8px;">saved trips & packages</h1>
+      <p style="color: var(--text-muted);">your saved airline packages are remembered in your browser.</p>
+    </div>
+
+    <div id="emptyfavs" class="empty-box" style="display: none;">
+      <h2>no saved packages yet</h2>
+      <p>click the heart icon on any package to quickly bookmark it here.</p>
+      <a href="index.html" class="btn">start browsing</a>
+    </div>
+
+    <section class="trips-grid" id="favsgrid"></section>
+  </main>
+
+  <footer>
+    <p>© 2026 Nuvora airlines. all rights reserved.</p>
+  </footer>
+
+  <script src="js/fav.js"></script>
+  <script>
+    async function loadsavedtrips() {
+      const favsgrid = document.getelementbyid('favsgrid');
+      const emptyfavs = document.getelementbyid('emptyfavs');
+      const savedids = getfavorites();
+
+      if (savedids.length === 0) {
+        emptyfavs.style.display = 'block';
+        favsgrid.style.display = 'none';
+        return;
+      }
+
+      try {
+        const res = await fetch('data/trips.json');
+        const trips = await res.json();
+        const savedtrips = trips.filter(t => savedids.includes(t.id));
+
+        if (savedtrips.length === 0) {
+          emptyfavs.style.display = 'block';
+          favsgrid.style.display = 'none';
+          return;
+        }
+
+        emptyfavs.style.display = 'none';
+        favsgrid.style.display = 'grid';
+        favsgrid.innerhtml = '';
+
+        savedtrips.foreach(trip => {
+          const card = document.createelement('article');
+          card.classname = 'trip-card';
+          card.innerhtml = `
+            <div class="card-img-wrap">
+              <img src="${trip.image}" alt="${trip.name}" loading="lazy">
+              <button class="fav-toggle-btn is-active" data-id="${trip.id}" aria-label="remove from favorites">❤️</button>
+            </div>
+            <div class="card-body">
+              <div>
+                <span class="category-badge">${trip.category}</span>
+                <h2 class="card-title" style="margin-top: 8px;">${trip.name}</h2>
+                <p class="card-dest">📍 ${trip.destination}</p>
+                <p class="card-desc" style="margin-top: 8px;">${trip.shortdescription}</p>
+              </div>
+              <div>
+                <div class="card-meta">
+                  <span>⏱️ ${trip.duration}</span>
+                  <span>⭐ ${trip.rating} / 5</span>
+                </div>
+                <div class="card-price-row" style="margin-top: 14px;">
+                  <span class="price-tag">$${trip.price} <small>/ adult</small></span>
+                  <a href="trip.html?id=${trip.id}" class="btn">view details</a>
+                </div>
+              </div>
+            </div>
+          `;
+
+          const favbtn = card.queryselector('.fav-toggle-btn');
+          favbtn.addeventlistener('click', () => {
+            togglefavorite(trip.id);
+            loadsavedtrips();
+          });
+
+          favsgrid.appendchild(card);
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    document.addeventlistener('domcontentloaded', loadsavedtrips);
+  </script>
+</body>
+</html>
